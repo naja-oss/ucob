@@ -36,8 +36,18 @@
                     <h4 class="mb-0">Tambah Data Siswa</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ url('/siswa/tambah') }}" method="POST">
+                    <form action="{{ url('/siswa/tambah') }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        {{-- Foto --}}
+                        {{-- Foto --}}
+                        <div class="mb-4">
+                            <label for="foto" class="form-label">Foto</label>
+                            <input type="file" class="form-control @error('foto') is-invalid @enderror"
+                                id="foto" name="foto">
+                            @error('foto')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
                         <div class="mb-3">
                             <label class="form-label">Nama</label>
                             <input type="text" class="form-control" name="nama"

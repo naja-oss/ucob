@@ -96,6 +96,7 @@
                                 <th>Tempat Lahir</th>
                                 <th>Tanggal Lahir</th>
                                 <th>Alamat</th>
+                                <th>Foto</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -111,6 +112,13 @@
                                         <td>{{ $datum->tempat_lahir }}</td>
                                         <td>{{ $datum->tanggal_lahir->isoFormat('D MMMM Y') }}</td>
                                         <td>{{ $datum->alamat }}</td>
+                                        <td style="width: 150px">
+                                            <center>
+                                                <img src="{{ asset('foto_siswa/' . $datum->foto) }}"
+                                                    alt="foto  {{ $datum->nama }}" class="img-thumbnail"
+                                                    style="width: 50%;">
+                                            </center>
+                                        </td>
                                         <td>
                                             <a href="{{ url('/siswa/edit/' . $datum->id) }}"
                                                 class="btn btn-warning btn-sm">
@@ -136,7 +144,6 @@
                         </tbody>
                     </table>
                 </div>
-
                 <div class="text-center mt-3">
                     <a href="{{ url('/siswa/dashboard') }}" class="btn btn-secondary">Kembali</a>
                 </div>

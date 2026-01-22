@@ -50,8 +50,9 @@
                         <p class="fw-bold mb-3">
                             Apakah Anda yakin ingin menghapus data siswa berikut?
                         </p>
-
                         <table class="table table-bordered">
+                            <center><img src="{{ asset('foto_siswa/' . $data->foto) }}" alt="foto  {{ $data->nama }}"
+                                    class="img-thumbnail" style="width: 90%;"></center>
                             <tr>
                                 <td width="35%">Nama</td>
                                 <td>{{ $data->nama }}</td>
@@ -74,7 +75,7 @@
                             </tr>
                             <tr>
                                 <td>Tanggal Lahir</td>
-                                <td>{{ $data->tanggal_lahir }}</td>
+                                <td>{{ $data->tanggal_lahir->isoFormat('D MMMM YYYY') }}</td>
                             </tr>
                             <tr>
                                 <td>Alamat</td>

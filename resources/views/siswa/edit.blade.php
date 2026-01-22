@@ -37,10 +37,22 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ url('/siswa/update/' . $data->id) }}" method="POST">
+                    <form action="{{ url('/siswa/update/' . $data->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('put')
-
+                        {{-- Foto --}}
+                        @isset($data->foto)
+                            <img src="{{ asset('foto_siswa' . '/' . $data->foto) }}" alt="foto {{ $data->nama }}"
+                                class="img-thumbnail" style="width: 20%;">
+                        @endisset
+                        <div class="mb-3">
+                            <label for="foto" class="form-label">Foto Siswa</label>
+                            <input type="file" name="foto" id="foto"
+                                class="form-control @error('foto') is-invalid @enderror" value="{{ old('foto') }}">
+                            @error('foto')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
                         <!-- Nama -->
                         <div class="mb-3">
                             <label class="form-label">Nama</label>
