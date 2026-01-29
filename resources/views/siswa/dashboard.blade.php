@@ -109,7 +109,11 @@
         </a>
 
         <a href="{{ url('/siswa') }}">
-            <i class="bi bi-house me-2"></i> Home
+            <i class="bi bi-mortarboard me-2"></i> Data Siswa
+        </a>
+
+        <a href="{{ url('/admin/admin') }}">
+            <i class="bi bi-person me-2"></i> Pengaturan Akun
         </a>
 
         <a href="{{ url('/login') }}">

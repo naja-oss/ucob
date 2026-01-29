@@ -1,4 +1,4 @@
-@extends('layouts.back')
+@extends('layouts.back.front')
 @section('title', 'Data Siswa')
 @section('content')
 

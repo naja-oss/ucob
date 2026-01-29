@@ -3,93 +3,124 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @csrf
     <title>Website Pendaftaran</title>
 
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
         body {
-            height: 100vh;
-            background: linear-gradient(135deg, #1e90ff, #00c6ff);
+            background-color: #f8fafc;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            color: #2563eb !important;
+        }
+
+        .hero {
+            min-height: 85vh;
             display: flex;
-            justify-content: center;
             align-items: center;
-        }
-
-        .container {
-            width: 100%;
-            padding: 20px;
-        }
-
-        .card {
-            max-width: 450px;
-            margin: auto;
-            background-color: #ffffff;
-            padding: 40px;
-            border-radius: 12px;
+            justify-content: center;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
-        .card h1 {
-            margin-bottom: 15px;
-            color: #333;
+        .hero h1 {
+            font-weight: 800;
         }
 
-        .card p {
-            margin-bottom: 30px;
-            color: #555;
-            line-height: 1.6;
+        .hero span {
+            color: #2563eb;
         }
 
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background-color: #1e90ff;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: bold;
-            transition: 0.3s;
+        .btn-primary {
+            background-color: #2563eb;
+            border: none;
         }
 
-        .btn:hover {
-            background-color: #0b5ed7;
+        .btn-outline-primary {
+            border-color: #2563eb;
+            color: #2563eb;
         }
 
-        footer {
-            margin-top: 25px;
-            font-size: 13px;
-            color: #777;
+        .btn-outline-primary:hover {
+            background-color: #2563eb;
+            color: white;
         }
     </style>
 </head>
 
 <body>
 
-    <div class="container">
-        <div class="card">
-            <h1>Pendaftaran PKL</h1>
-            <p>
-                Selamat datang di website pendaftaran.
-                Silakan klik tombol di bawah ini untuk melakukan pendaftaran peserta.
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url('/') }}">
+                <i class="bi bi-mortarboard-fill"></i> Pendaftaran PKL
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ url('/') }}">
+                            <i class="bi bi-house"></i> Beranda
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/umum/tentang') }}">
+                            <i class="bi bi-info-circle"></i> Tentang
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/umum/homepage">
+                            <i class="bi bi-journal-bookmark-fill"></i> Kursus
+                        </a>
+                    </li>
+
+                    <li class="nav-item ms-3">
+                        <a class="btn btn-primary rounded-pill px-4" href="{{ url('/login') }}">
+                            <i class="bi bi-box-arrow-in-right"></i> Login
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="mb-3">
+                Selamat Datang di <span>Sistem Pendaftaran PKL</span>
+            </h1>
+
+            <p class="text-muted mb-4">
+                Platform resmi untuk pendaftaran peserta Praktik Kerja Lapangan (PKL).
+                Sistem ini dirancang untuk mempermudah proses pendaftaran secara online,
+                cepat, dan terstruktur.
             </p>
 
-            <a href="/login" class="btn">Daftar Sekarang</a>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="{{ url('/umum/pendaftaran') }}" class="btn btn-primary btn-lg rounded-pill px-4">
+                    <i class="bi bi-person"></i> Daftar Sekarang
+                </a>
 
-            <footer>
-                © 2026 Sistem Pendaftaran
-            </footer>
+            </div>
         </div>
-    </div>
+    </section>
 
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

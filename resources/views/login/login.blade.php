@@ -3,111 +3,197 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <title>Pendaftaran Siswa PKL | Login</title>
+    <link rel="shortcut icon" href="{{ asset('icon/icon.png') }}" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <style>
-        * {
-            box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
         body {
-            height: 100vh;
-            background: linear-gradient(135deg, #1e90ff, #00c6ff);
+            min-height: 100vh;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0d6efd, #0dcaf0);
         }
 
         .login-card {
-            width: 350px;
             background: white;
-            padding: 35px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, .2);
+            border-radius: 20px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+            max-width: 420px;
+            width: 100%;
         }
 
-        .login-card h2 {
+        .login-header {
+            background: linear-gradient(135deg, #0d6efd, #0dcaf0);
+            padding: 2.5rem 2rem;
             text-align: center;
-            margin-bottom: 25px;
-            color: #333;
-        }
-
-        .form-group {
-            margin-bottom: 18px;
-        }
-
-        label {
-            font-size: 14px;
-            font-weight: bold;
-            color: #555;
-        }
-
-        input {
-            width: 100%;
-            padding: 10px;
-            margin-top: 6px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-        }
-
-        button {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            background: #1e90ff;
             color: white;
-            font-weight: bold;
-            border-radius: 6px;
+        }
+
+        .login-header h3 {
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .login-header p {
+            margin: 0.5rem 0 0;
+            opacity: 0.9;
+        }
+
+        .login-body {
+            padding: 2rem;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            padding: 12px 15px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.15);
+        }
+
+        .input-group-text {
+            border-radius: 10px 0 0 10px;
+            border: 2px solid #e9ecef;
+            border-right: 0;
+            background: #f8f9fa;
+        }
+
+        .input-group .form-control {
+            border-radius: 0 10px 10px 0;
+            border-left: 0;
+        }
+
+        .input-group:focus-within .input-group-text {
+            border-color: #667eea;
+        }
+
+        .btn-login {
+            background: linear-gradient(135deg, #0d6efd, #0dcaf0);
+            border: none;
+            border-radius: 10px;
+            padding: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
             cursor: pointer;
+            color: #6c757d;
+            z-index: 10;
         }
 
-        button:hover {
-            background: #0b5ed7;
+        .password-toggle:hover {
+            color: #667eea;
         }
 
-        .error {
-            background: #f8d7da;
-            color: #842029;
-            padding: 10px;
-            margin-bottom: 15px;
-            border-radius: 6px;
-            font-size: 14px;
+        .login-footer {
+            text-align: center;
+            padding: 1.5rem 2rem;
+            background: #f8f9fa;
+            border-top: 1px solid #e9ecef;
         }
     </style>
 </head>
 
 <body>
-
-    <div class="login-card">
-        <h2>Login</h2>
-
-        @if (session('error'))
-            <div class="error">
-                {{ session('error') }}
-            </div>
-        @endif
-
-        <form action="{{ url('/login') }}" method="POST">
-            @csrf
-
-            <div class="form-group">
-                <label>Username</label>
-                <input type="text" name="username" required>
+    <div class="container">
+        <div class="login-card mx-auto">
+            <div class="login-header">
+                <i class="bi bi-person-circle" style="font-size: 3rem;"></i>
+                <h3 class="mt-3">Selamat Datang</h3>
+                <p>Silakan login untuk melanjutkan</p>
             </div>
 
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" name="password" required>
+            <div class="login-body">
+                <form action="{{ url('/login') }}" method="POST">
+                    @csrf
+
+                    {{-- Email --}}
+                    <div class="mb-3">
+                        <label for="email" class="form-label fw-semibold">Email</label>
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                <i class="bi bi-envelope"></i>
+                            </span>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror"
+                                id="email" name="email" value="{{ old('email') }}" placeholder="Masukkan email"
+                                required autofocus>
+                        </div>
+                        @error('email')
+                            <div class="text-danger small mt-1">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    {{-- Password --}}
+                    <div class="mb-4">
+                        <label for="password" class="form-label fw-semibold">Password</label>
+                        <div class="input-group position-relative">
+                            <span class="input-group-text">
+                                <i class="bi bi-lock"></i>
+                            </span>
+                            <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                id="password" name="password" placeholder="Masukkan password" required>
+                            <span class="password-toggle" onclick="togglePassword()">
+                                <i class="bi bi-eye" id="toggleIcon"></i>
+                            </span>
+                        </div>
+                        @error('password')
+                            <div class="text-danger small mt-1">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    {{-- Submit --}}
+                    <button type="submit" class="btn btn-primary btn-login w-100">
+                        <i class="bi bi-box-arrow-in-right me-2"></i> Login
+                    </button>
+                </form>
             </div>
 
-            <button type="submit">Login</button>
-            </button>
-
-        </form>
+            <div class="login-footer">
+                <a href="{{ url('/') }}" class="text-decoration-none">
+                    <i class="bi bi-arrow-left me-1"></i> Kembali ke Beranda
+                </a>
+            </div>
+        </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
+    </script>
+    <script>
+        function togglePassword() {
+            const password = document.getElementById('password');
+            const toggleIcon = document.getElementById('toggleIcon');
+
+            if (password.type === 'password') {
+                password.type = 'text';
+                toggleIcon.classList.remove('bi-eye');
+                toggleIcon.classList.add('bi-eye-slash');
+            } else {
+                password.type = 'password';
+                toggleIcon.classList.remove('bi-eye-slash');
+                toggleIcon.classList.add('bi-eye');
+            }
+        }
+    </script>
 </body>
 
 </html>
